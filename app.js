@@ -9,7 +9,7 @@ const sign = require('./routes/index');
 const ErrorHandler = require('./middlewares/ErrorHandler');
 const apiLimiter = require('./middlewares/apiLimiter');
 
-const { PORT = 3000 } = process.env;
+const { PORT = 3010 } = process.env;
 const app = express();
 
 app.use(requestLogger);
