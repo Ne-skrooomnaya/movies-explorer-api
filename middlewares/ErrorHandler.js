@@ -1,6 +1,6 @@
 const {
   ErrorServer,
-} = require('../utils/ErrorServer');
+} = require('../config/erors');
 
 module.exports = (err, req, res, next) => {
   const { statusCode = 500, message } = err;

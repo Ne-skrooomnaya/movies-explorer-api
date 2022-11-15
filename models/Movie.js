@@ -1,4 +1,7 @@
 const mongoose = require('mongoose');
+const {
+  errorUrl,
+} = require('../config/erors');
 
 const movieSchema = new mongoose.Schema({
   country: {
@@ -33,7 +36,7 @@ const movieSchema = new mongoose.Schema({
       validator(v) {
         return /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\\+~#=]+\.[a-zA-Z0-9()]+([-a-zA-Z0-9()@:%_\\+.~#?&/=#]*)/.test(v);
       },
-      message: 'Невалидная ссылка',
+      message: errorUrl,
     },
   },
 
@@ -44,7 +47,7 @@ const movieSchema = new mongoose.Schema({
       validator(v) {
         return /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\\+~#=]+\.[a-zA-Z0-9()]+([-a-zA-Z0-9()@:%_\\+.~#?&/=#]*)/.test(v);
       },
-      message: 'Невалидная ссылка',
+      message: errorUrl,
     },
   },
 
@@ -55,7 +58,7 @@ const movieSchema = new mongoose.Schema({
       validator(v) {
         return /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\\+~#=]+\.[a-zA-Z0-9()]+([-a-zA-Z0-9()@:%_\\+.~#?&/=#]*)/.test(v);
       },
-      message: 'Невалидная ссылка',
+      message: errorUrl,
     },
   },
 
@@ -81,4 +84,4 @@ const movieSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model('Movie', movieSchema);
+module.exports = mongoose.model('movie', movieSchema);
