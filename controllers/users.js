@@ -1,11 +1,12 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
+
 const { ErrorBad } = require('../utils/ErrorBad');
 const { ErrorConflict } = require('../utils/ErrorConflict');
 const { ErrorNot } = require('../utils/ErrorNot');
 const { ErrorServer } = require('../utils/ErrorServer');
-const { ErrorUnauthorized } = require('../utils/ErrorUnauthorized');
+const { ErrorUnauth } = require('../utils/ErrorUnauth');
 
 const {
   errorValidation, errorServer, userEmailError, userNotFound,
@@ -102,7 +103,7 @@ const login = (req, res, next) => {
     })
     .catch((err) => {
       if (err.name === 'Error') {
-        next(new ErrorUnauthorized('Ошибка при авторизации'));
+        next(new ErrorUnauth('Ошибка при авторизации'));
       } else {
         next(err);
       }

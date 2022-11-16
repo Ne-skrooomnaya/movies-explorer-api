@@ -8,4 +8,4 @@ ip
 https://51.250.54.182/
 
 back
-https://api.diplom.nomoredomains.icu/
+https://api.diplom.nomoredomains.icu
