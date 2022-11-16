@@ -30,12 +30,6 @@ const userValidation = celebrate({
   }),
 });
 
-const userIdValidation = celebrate({
-  params: Joi.object().keys({
-    userId: Joi.string().alphanum().length(24).hex(),
-  }),
-});
-
 const movieValidation = celebrate({
   body: Joi.object().keys({
     country: Joi.string().required(),
@@ -62,7 +56,6 @@ module.exports = {
   authValidation,
   registerValidation,
   userValidation,
-  userIdValidation,
   movieValidation,
   movieIdValidation,
 };

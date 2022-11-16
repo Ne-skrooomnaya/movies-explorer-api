@@ -11,12 +11,6 @@ const {
 
 const { NODE_ENV, JWT_SECRET } = process.env;
 
-const getUsers = (req, res, next) => {
-  User.find({})
-    .then((users) => res.status(200).send(users))
-    .catch(next);
-};
-
 const createUser = (req, res, next) => {
   const {
     name, email, password,
@@ -108,7 +102,6 @@ const getUserInfo = (req, res, next) => {
 };
 
 module.exports = {
-  getUsers,
   getUserId,
   createUser,
   login,
