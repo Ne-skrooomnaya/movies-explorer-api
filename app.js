@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-const routes = require('./routes/index');
+const router = require('./routes/index');
 const ErrorHandler = require('./middlewares/ErrorHandler');
 const apiLimiter = require('./middlewares/apiLimiter');
 
@@ -28,7 +28,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(routes);
+app.use(router);
 
 app.use(errorLogger);
 
