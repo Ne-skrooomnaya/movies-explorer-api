@@ -1,4 +1,4 @@
-const Movie = require('../models/movie');
+const Movie = require('../models/Movie');
 
 const { ErrorBad } = require('../utils/ErrorBad');
 const { ErrorForbidden } = require('../utils/ErrorForbidden');
