@@ -4,23 +4,20 @@ const isEmail = require('validator/lib/isEmail');
 const ErrorUnauthorized = require('../utils/ErrorUnauthorized');
 const {
   errorEmail,
-  fillField,
-  lengthFieldMax,
-  lengthFieldMin,
   userEmailPas,
 } = require('../config/erors');
 
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: [true, fillField],
-    minlength: [2, lengthFieldMin],
-    maxlength: [30, lengthFieldMax],
+    required: [true],
+    minlength: [2],
+    maxlength: [30],
     // default: 'Кинолюбитель',
   },
   email: {
     type: String,
-    required: [true, fillField],
+    required: [true],
     unique: true,
     validate: {
       validator: (email) => isEmail(email),
@@ -29,7 +26,7 @@ const userSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    required: [true, fillField],
+    required: [true],
     select: false,
     // minlenght: 8,
   },

@@ -14,9 +14,5 @@ module.exports.movieDel = 'Фильм успешно удален';
 module.exports.errorLimit = 'Превышен лимит запросов';
 module.exports.errorAuth = 'Необходима авторизация';
 
-module.exports.fillField = 'Это поле должно быть заполнено';
-module.exports.lengthFieldMin = 'Минимальная длина поля - 2 знака';
-module.exports.lengthFieldMax = 'Максимальная длина поля - 30 знака';
-
 module.exports.errorEmail = 'Почта указана неверно';
 module.exports.errorUrl = 'Ссылка указана неверно';
