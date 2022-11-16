@@ -5,11 +5,25 @@ const { ErrorBad } = require('../utils/ErrorBad');
 const { ErrorConflict } = require('../utils/ErrorConflict');
 const { ErrorNot } = require('../utils/ErrorNot');
 const { ErrorServer } = require('../utils/ErrorServer');
+const { ErrorUnauthorized } = require('../utils/ErrorUnauthorized');
+
 const {
   errorValidation, errorServer, userEmailError, userNotFound,
 } = require('../config/erors');
 
 const { NODE_ENV, JWT_SECRET } = process.env;
+
+const getUserInfo = (req, res, next) => {
+  User.findById(req.user._id)
+    .then((user) => {
+      if (user) {
+        res.status(200).send({ user });
+        return;
+      }
+      next(new ErrorNot(userNotFound));
+    })
+    .catch(next);
+};
 
 const createUser = (req, res, next) => {
   const {
@@ -86,19 +100,13 @@ const login = (req, res, next) => {
       const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'secret-key', { expiresIn: '7d' });
       res.send({ token });
     })
-    .catch(next);
-};
-
-const getUserInfo = (req, res, next) => {
-  User.findById(req.user._id)
-    .then((user) => {
-      if (user) {
-        res.status(200).send({ user });
-        return;
+    .catch((err) => {
+      if (err.name === 'Error') {
+        next(new ErrorUnauthorized('Ошибка при авторизации'));
+      } else {
+        next(err);
       }
-      next(new ErrorNot(userNotFound));
-    })
-    .catch(next);
+    });
 };
 
 module.exports = {
