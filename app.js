@@ -13,9 +13,10 @@ const apiLimiter = require('./middlewares/apiLimiter');
 const { PORT = 3002, DB_ADRESS = 'mongodb://localhost:27017/moviesdb' } = process.env;
 const app = express();
 
-app.use(cors);
 app.use(requestLogger);
 app.use(apiLimiter);
+app.use(cors);
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
