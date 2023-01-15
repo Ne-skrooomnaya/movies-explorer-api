@@ -2,6 +2,8 @@ const allowedCors = [
   'https://api.nomoreparties.co/beatfilm-movies',
   'http://localhost:3000',
   'http://localhost:3002',
+  'https://angelDiplomnaya.nomoredomains.club',
+  'https://api.angelDiplomnaya.nomoredomains.club',
 ];
 
 module.exports.cors = (req, res, next) => {
