@@ -72,6 +72,8 @@ const deleteMovie = (req, res, next) => {
       }
       return next(new ErrorServer(errorServer));
     });
+  // Movie.findByIdAndRemove(req.params.movieId)
+  //   .then(() => res.status(200).send({ message: movieDel }));
 };
 
 module.exports = {

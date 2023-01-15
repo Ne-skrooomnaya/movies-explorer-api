@@ -18,12 +18,12 @@ const getUserInfo = (req, res, next) => {
   User.findById(req.user._id)
     .then((user) => {
       if (user) {
-        res.status(200).send({ user });
+        res.send(user);
         return;
       }
       next(new ErrorNot(userNotFound));
     })
-    .catch(next);
+    .catch((err) => { res.send(err); });
 };
 
 const createUser = (req, res, next) => {

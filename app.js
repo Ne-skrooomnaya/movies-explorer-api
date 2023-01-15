@@ -1,20 +1,27 @@
 require('dotenv').config();
 const express = require('express');
-const cors = require('cors');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
+const cors = require('cors');
+// const { cors } = require('./middlewares/cors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const router = require('./routes/index');
 const ErrorHandler = require('./middlewares/ErrorHandler');
 const apiLimiter = require('./middlewares/apiLimiter');
 
-const { PORT = 3010, DB_ADRESS = 'mongodb://localhost:27017/moviesdb' } = process.env;
+const { PORT = 3002, DB_ADRESS = 'mongodb://localhost:27017/moviesdb' } = process.env;
 const app = express();
+
+app.use(
+  cors({
+    origin: ['http://localhost:3000', 'http://localhost:3002', 'https://angelDiplomnaya.nomoredomains.club', 'https://api.angelDiplomnaya.nomoredomains.club'], // было 3000
+    credentials: true,
+  }),
+);
 
 app.use(requestLogger);
 app.use(apiLimiter);
-app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
