@@ -17,7 +17,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: ['https://api.nomoreparties.co', 'http://localhost:3000', 'http://localhost:3002', 'https://angelDiplomnaya.nomoredomains.club', 'https://api.angelDiplomnaya.nomoredomains.club'], // было 3002
+    origin: ['https://api.nomoreparties.co', 'http://localhost:3000', 'http://localhost:3002', 'https://angeldiplomnaya.nomoredomains.club', 'https://api.angeldiplomnaya.nomoredomains.club'], // было 3002
     credentials: true,
   }),
 );
