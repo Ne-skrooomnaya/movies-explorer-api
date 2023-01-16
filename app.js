@@ -5,18 +5,19 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
-// const { cors } = require('./middlewares/cors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const router = require('./routes/index');
 const ErrorHandler = require('./middlewares/ErrorHandler');
 const apiLimiter = require('./middlewares/apiLimiter');
 
-const { PORT = 3002, DB_ADRESS = 'mongodb://localhost:27017/moviesdb' } = process.env;
+const { PORT = 3002 } = process.env;
+const { NODE_ENV, DB_ADRESS } = process.env;
+
 const app = express();
 
 app.use(
   cors({
-    origin: ['http://localhost:3000', 'http://localhost:3002', 'https://angelDiplomnaya.nomoredomains.club', 'https://api.angelDiplomnaya.nomoredomains.club'], // было 3002
+    origin: ['https://api.nomoreparties.co', 'http://localhost:3000', 'http://localhost:3002', 'https://angelDiplomnaya.nomoredomains.club', 'https://api.angelDiplomnaya.nomoredomains.club'], // было 3002
     credentials: true,
   }),
 );
@@ -24,9 +25,9 @@ app.use(
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-mongoose.connect(DB_ADRESS, {
+mongoose.connect(NODE_ENV === 'production' ? DB_ADRESS : 'mongodb://localhost:27017/moviesdb', {
   useNewUrlParser: true,
-  useUnifiedTopology: true,
+  useUnifiedTopology: false,
 }).then(() => console.log('connected'))
   .catch((err) => console.log(`Ошибка ${err.name}: ${err.message}`));
 app.use((req, res, next) => {
