@@ -16,10 +16,7 @@ const { NODE_ENV, DB_ADRESS } = process.env;
 const app = express();
 
 app.use(
-  cors({
-    origin: ['https://angelDiplomnaya.nomoredomains.club', 'https://api.angelDiplomnaya.nomoredomains.club'], // было 3002
-    credentials: true,
-  }),
+  cors(),
 );
 
 app.use(bodyParser.json());
