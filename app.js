@@ -10,7 +10,7 @@ const router = require('./routes/index');
 const ErrorHandler = require('./middlewares/ErrorHandler');
 const apiLimiter = require('./middlewares/apiLimiter');
 
-const { PORT = 3000 } = process.env;
+const { PORT = 3002 } = process.env;
 const { NODE_ENV, DB_ADRESS } = process.env;
 
 const app = express();
